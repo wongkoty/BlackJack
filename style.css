@@ -1,0 +1,34 @@
+body{
+	/*background-color: black;*/
+	text-align: center;
+	margin: 0px;
+}
+div{
+	height: 500px;
+	width: 500px;
+	display: inline-block;
+}
+#container{
+	background-color: black;
+}
+#board{
+	background-color: red;
+	height: 300px;
+	width: 300px;
+/*	overflow: visible;*/
+	position: absolute;
+}
+#dealer{
+	background-color: white;
+	height: 100px;
+	width: 100px;
+	position: relative;
+}
+#player{
+	background-color: white;
+	height: 100px;
+	width: 100px;
+	position: relative;
+	top: 80%;
+	right: 10%;
+}
