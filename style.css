@@ -16,6 +16,9 @@ button{
 	bottom: 6%;
 	left: 45%;
 }
+.hidden{
+	visibility: hidden;
+}
 #container{
 	background-color: black;
 	height: 550px;
@@ -35,7 +38,7 @@ button{
 #dealer{
 	background-color: white;
 	height: 98px;
-	width: 70px;
+	width: 300px;
 	position: absolute;
 	bottom: 68%;
 	left: 46%;
@@ -43,7 +46,7 @@ button{
 #player{
 	background-color: white;
 	height: 98px;
-	width: 70px;
+	width: 300px;
 	position: absolute;
 	bottom: 27%;
 	left: 46%;
@@ -59,4 +62,47 @@ button{
 #score{
 	/*display: inline-block;*/
 	/*position: absolute;*/
+}
+.dealt {
+	background-size: contain;
+	height: 100px;
+	width: 72px;
+	background-color: blue;
+	position: relative;
+}
+.KC {
+	background-image: url("images/cards/clubs/king.png");
+}
+.KD {
+	background-image: url("images/cards/diamonds/king.png")
+}
+.KS {
+	background-image: url("images/cards/spades/king.png")
+}
+.KH {
+	background-image: url("images/cards/hearts/king.png")
+}
+.QC {
+	background-image: url("images/cards/clubs/queen.png");
+}
+.QD {
+	background-image: url("images/cards/diamonds/queen.png")
+}
+.QS {
+	background-image: url("images/cards/spades/queen.png")
+}
+.QH {
+	background-image: url("images/cards/hearts/queen.png")
+}
+.JC {
+	background-image: url("images/cards/clubs/jack.png");
+}
+.JD {
+	background-image: url("images/cards/diamonds/jack.png")
+}
+.JS {
+	background-image: url("images/cards/spades/jack.png")
+}
+.JH {
+	background-image: url("images/cards/hearts/jack.png")
 }

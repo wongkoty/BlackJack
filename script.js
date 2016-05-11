@@ -3,12 +3,14 @@
 
 // console.log("What's goodie 2 shoez");
 var playerBankRoll = 10000;
+var betAmount = 0;
 var shuffledDeckUse = []
 var hitIncrement = 4;
 var dealerCardCount = 2;
 var playerCardCount = 2;
 var dealerAceCounter = 0;
 var playerAceCounter = 0;
+var copiedObject = [];
 
 $("#start").click(function(){
   start();
@@ -17,10 +19,14 @@ $("#start").click(function(){
 //starts the game
 var start = function(){
   // console.log("start works");
+  $("#start").addClass("hidden");
   makeDeck();
 }
 
-var
+//prints the player's bank roll
+var bankRoll = function() {
+  $("#score").html("<h3>" + "Your Current Bankroll Is: " + playerBankRoll);
+}
 
 //makes the play again button
 var makePlayAgainButton = function() {
@@ -34,13 +40,28 @@ var makePlayAgainButton = function() {
 
 //runs play again
 var playAgain = function() {
+  removeCards();
+  $("#play-again").addClass("hidden");
   hitIncrement = 4;
   dealerCardCount = 2;
   playerCardCount = 2;
   dealerAceCounter = 0;
   playerAceCounter = 0;
+  betAmount = 0;
+  console.log(betAmount);
+  console.log(hitIncrement);
+  makeDeck();
+};
 
-  // makeDeck();
+var removeCards = function() {
+  $(".dealt").remove();
+  // for (i = 0; i < dealerCardCount + playerCardCount; i++){
+  //   if (shuffledDeckUse[i][0] === 11 || shuffledDeckUse[i][0] === 1){
+  //     shuffledDeckUse[i][0] = "A";
+  //   }
+  //   var classHolder = shuffledDeckUse[i][0] + shuffledDeckUse[i][1]
+  //   $("." + classHolder).remove();
+  // }  
 };
 
 //restarts the game
@@ -82,6 +103,7 @@ var shuffleDeck = function(newDeck) {
     newDeck[i] = newDeck[j]
     newDeck[j] = temp
   }
+  // copiedObject = jQuery.extend({}, newDeck) was trying to copy an array to interate through to find classes. found better solution
   shuffledDeckUse = newDeck;
   bet(shuffledDeckUse);
   //gameplay
@@ -94,12 +116,13 @@ var shuffleDeck = function(newDeck) {
 var bet = function(shuffledDeck){
   // var betAmount = prompt("How much would you like to bet?"); //needs to take in a number input
   do{
-  var betAmount = parseInt(window.prompt("Place your bet"));
+  betAmount = parseInt(window.prompt("Place your bet"));
   }while(isNaN(betAmount) || playerBankRoll < betAmount || betAmount < 1);
 
   // console.log(betAmount);
   playerBankRoll = playerBankRoll - betAmount;
   // console.log(playerBankRoll);
+  $("#score").html("<h3>" + "Your Current Bankroll Is: " + playerBankRoll);
   dealCards(betAmount, shuffledDeck);
 }
 
@@ -112,9 +135,13 @@ var dealCards = function(betAmount, shuffledDeck){
   console.log(shuffledDeck);  
   for (i = 0; i < 4; i += 2){
     dealer.push(shuffledDeck[i])
+    $("<div>").addClass(shuffledDeck[i][0] + shuffledDeck[i][1]).addClass("dealt").appendTo($("#dealer"));
     player.push(shuffledDeck[i + 1]);
+    $("<div>").addClass(shuffledDeck[i + 1][0] + shuffledDeck[i + 1][1]).addClass("dealt").appendTo($("#player"));
+    // $("#player").text("what's up 2");
     // console.log(i);
   }
+  // $("#dealer").addClass(shuffledDeck[0][0] + shuffledDeck[0][1]);
   console.log(dealer);
   console.log(dealer[0][0]); //confirms the card number returns string
   console.log(dealer[1][0]);
@@ -223,8 +250,34 @@ var sumTheCards = function(dealerCards, playerCards) {
   }
   console.log("Dealer's Sum " + dealerSum);
   console.log("Player's Sum " + playerSum);
-  checkForBlackJack(dealerSum, playerSum);
-  hitOrStay(dealerSum, playerSum);
+  checkForNatural(dealerSum, playerSum);
+  if (dealerSum != 21 && playerSum != 21){
+    hitOrStay(dealerSum, playerSum);
+  }
+};
+
+var checkForNatural = function(dealerNatural, playerNatural) {
+  // console.log("checkForBlackJack works");
+  // console.log(playerNatural);
+  if (dealerNatural === 21 && playerNatural === 21 && dealerNatural === playerNatural){
+    console.log("Dealer blackjack!");
+    // window.reload();
+    payOutNatural(dealerNatural, playerNatural);
+    makePlayAgainButton();
+    //next round
+  } else if (dealerNatural === 21){
+    console.log("Dealer blackjack!");
+    // window.reload();
+    payOutNatural(dealerNatural, playerNatural);
+    makePlayAgainButton();
+    //next round
+  } else if (playerNatural === 21) {
+    console.log("Player blackjack!");
+    payOutNatural(dealerNatural, playerNatural);
+    makePlayAgainButton();
+    // window.reload();
+    //next round
+  }
 };
 
 var checkForBlackJack = function(dealerBlackjack, playerBlackjack) {
@@ -232,11 +285,13 @@ var checkForBlackJack = function(dealerBlackjack, playerBlackjack) {
   if (dealerBlackjack === 21){
     console.log("Dealer blackjack!");
     // window.reload();
-    restart();
+    payOut(dealerBlackjack, playerBlackjack);
+    makePlayAgainButton();
     //next round
   } else if (playerBlackjack === 21) {
     console.log("Player blackjack!");
-    restart();
+    payOut(dealerBlackjack, playerBlackjack);
+    makePlayAgainButton();
     // window.reload();
     //next round
   }
@@ -249,6 +304,7 @@ var hitOrStay = function(dealerSum, playerSum) {
   do{
   var command = window.prompt("Hit or Stay?");
   }while(command != "hit" && command != "stay");
+
   if (command === "hit"){
     // console.log(playerSum);
     playerSum = playerSum + hit();
@@ -272,6 +328,7 @@ var hit = function(){
   console.log(newCard);
   hitIncrement++;
   console.log("this is the hit increment " + hitIncrement);
+  playerCardCount++;
   return convertToNumbers1(newCard);
   // return newCard;
 };
@@ -281,7 +338,7 @@ var checkForPlayerBust = function(dealerSum, playerBust) {
     if (playerAceCounter === 0){
       console.log("Player lost");
       // window.reload();
-      restart();
+      makePlayAgainButton();
     } else if (playerAceCounter > 0){
       while (playerAceCounter > 0){
         playerBust -= 10;
@@ -310,11 +367,13 @@ var checkForDealerBust = function(dealerSum, playerSum) {
         dealerTurn(dealerSum, playerSum);
     } else {
       console.log("dealer has no aces and busted");
-      restart();
+      payOut(dealerSum, playerSum);
+      // restart();
       }
   } 
   // checkForBlackJack(dealerBust, playerBust); //don't think I need to check this
-  checkForWinner(dealerSum, playerSum);
+  // checkForWinner(dealerSum, playerSum);
+  // payOut(dealerSum, playerSum);
 };
 
 var dealerTurn = function(dealerSum, playerSum){
@@ -330,21 +389,54 @@ var dealerTurn = function(dealerSum, playerSum){
     dealerCardCount++;
   }
   checkForDealerBust(dealerSum, playerSum);
+  payOut(dealerSum, playerSum);
 };
 
 var checkForWinner = function(dealer, player){
   // console.log("checkForTie works");
   if (dealer === player) {
     console.log("It's a tie");
-    restart();
+    payOut(dealer, player);
+    // restart();
   } else if (dealer > player) {
     console.log("dealer wins");
-    restart();
+    payOut(dealer, player);
+    // restart();
   } else {
     console.log("player wins");
-    restart();
+    payOut(dealer, player);
+    // restart();
   }
 };
 
+var payOutNatural = function(dealer, player){
+  console.log("payOutNatural works");
+  if (dealer === 21){
+    console.log("Dealer has a natural");
+  } else if (player === 21){
+    console.log("Player has a natural");
+    playerBankRoll += betAmount*2;
+  }
+}
+
+var payOut = function(dealerWin, playerWin) {
+  console.log("payOut works");
+  // console.log(dealerWin);
+  // console.log(playerWin);
+  if (dealerWin === playerWin){
+    console.log("It's a tie");
+    playerBankRoll += betAmount;
+    bankRoll();
+    makePlayAgainButton();
+  } else if (dealerWin > playerWin){
+    console.log("Dealer wins");
+    makePlayAgainButton();
+  } else if (dealerWin < playerWin){
+    console.log("player wins");
+    playerBankRoll += betAmount*2;
+    bankRoll();
+    makePlayAgainButton();
+  }
+}
 
 // });//end
