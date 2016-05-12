@@ -129,12 +129,13 @@ var shuffleDeck = function(newDeck) {
 //asks player how much they would like to bet
 var bet = function(shuffledDeck){
   // do {
-  var one = 0;
-  var five = 0;
-  var twenty5 = 0;
-  var fifty = 0;
-  var one00 = 0;
-  var five00 = 0;
+  // var one = 0;
+  // var five = 0;
+  // var twenty5 = 0;
+  // var fifty = 0;
+  // var one00 = 0;
+  // var five00 = 0;
+  
   $("#one").click(function() {
     // console.log("one works");
     if (playerBankRoll > 0 && betAmount < 500) {
@@ -144,7 +145,7 @@ var bet = function(shuffledDeck){
       $("#bet-amount").html("<h3>" + "You're Currently Betting: " + betAmount);
       betted++;
       /////Shout out to Kevin for the quick solution/////
-      $("<div>").addClass("chips").attr("id", "one1").appendTo($("#container")).click(function() {
+      $("<div>").addClass("chips1").attr("id", "one1").appendTo($("#container")).click(function() {
         console.log("it works");
         playerBankRoll += 1;
         betAmount -= 1
@@ -180,7 +181,7 @@ var bet = function(shuffledDeck){
       $("#bet-amount").html("<h3>" + "You're Currently Betting: " + betAmount);
       betted++;
 
-      $("<div>").addClass("chips").attr("id", "five1").appendTo($("#container")).click(function() {
+      $("<div>").addClass("chips1").attr("id", "five1").appendTo($("#container")).click(function() {
         console.log("it works");
         playerBankRoll += 5;
         betAmount -= 5;
@@ -278,6 +279,7 @@ var bet = function(shuffledDeck){
         dealCards(shuffledDeck);
         $(".done").remove();
         $(".chips1").remove();
+        $("#one, #five, #twenty5, #fifty, #one00, #five00").unbind();
       } else {
         alert("Need to bet");
       }
@@ -422,12 +424,27 @@ var convertToNumbers2 = function(hitCard) {
 
 //sees if the ace will be an 11 or 1
 var checkAce = function(aceCard) {
-  // console.log("checkAce works");
-  // console.log(aceCard);
+  console.log("checkAce works");
+  console.log(aceCard);
   do{
   var newAce = parseInt(window.prompt("1 or 11"));
   }while(isNaN(newAce) || newAce != "1" && newAce != "11");
+
+  console.log(newAce);
   return newAce;
+
+  // $(".hit, .stay").remove();
+  // $("<button>").addClass("a1").text("1").appendTo($("#container")).click(function(){
+  //   var newAce = 1;
+  //   $(".a1, .a11").remove();
+  //   return newAce;
+  // });
+  // $("<button>").addClass("a11").text("11").appendTo($("#container")).click(function(){
+  //   var newAce = 11;
+  //   $(".a1, .a11").remove();
+  //   return newAce;
+  // });
+  
 };
 
 //sums the cards for player and dealer
@@ -552,25 +569,28 @@ var hit = function(){
 };
 
 var checkForPlayerBust = function(dealerSum, playerBust) {
+  console.log(playerBust);
   if (playerBust > 21) {
     if (playerAceCounter === 0){
       console.log("Player lost");
       // window.reload();
       payOut(dealerSum, playerBust);
       // makePlayAgainButton();
-      $(".hit").remove();
-      $(".stay").remove();
+      $(".hit, .stay").remove();
+      // $(".stay").remove();
     } else if (playerAceCounter > 0){
       // while (playerAceCounter > 0){
         playerBust -= 10;
         playerAceCounter--;
+        hitOrStay(dealerSum, playerBust);
       // }
     }
-  } else if (playerBust < 21) {
-    hitOrStay(dealerSum, playerBust);
-  } else if (playerBust === 21){
-    dealerTurn(dealerSum, playerBust);
-  }
+  // } else if (playerBust < 21) {
+    
+  } 
+  // else if (playerBust === 21){
+  //   dealerTurn(dealerSum, playerBust);
+  // }
 
 };
 
@@ -655,8 +675,8 @@ var payOut = function(dealerWin, playerWin) {
   // console.log(dealerWin);
   // console.log(playerWin);
   if (dealerWin === playerWin){
-    console.log("It's a tie");
-    $("#actions").html("<h3>" + "It's a Tie!");
+    console.log("Push");
+    $("#actions").html("<h3>" + "Push!");
     playerBankRoll += betAmount;
     bankRoll();
     $("#payout").html("<h3>" + "Your Payout Is: " + betAmount);
