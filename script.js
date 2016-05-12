@@ -129,6 +129,12 @@ var shuffleDeck = function(newDeck) {
 //asks player how much they would like to bet
 var bet = function(shuffledDeck){
   // do {
+  var one = 0;
+  var five = 0;
+  var twenty5 = 0;
+  var fifty = 0;
+  var one00 = 0;
+  var five00 = 0;
   $("#one").click(function() {
     // console.log("one works");
     if (playerBankRoll > 0 && betAmount < 500) {
@@ -137,8 +143,34 @@ var bet = function(shuffledDeck){
       $("#current-payroll").html("<h3>" + "Your Current Bankroll Is: " + playerBankRoll);
       $("#bet-amount").html("<h3>" + "You're Currently Betting: " + betAmount);
       betted++;
+      /////Shout out to Kevin for the quick solution/////
+      $("<div>").addClass("chips").attr("id", "one1").appendTo($("#container")).click(function() {
+        console.log("it works");
+        playerBankRoll += 1;
+        betAmount -= 1
+        $("#current-payroll").html("<h3>" + "Your Current Bankroll Is: " + playerBankRoll);
+        $("#bet-amount").html("<h3>" + "You're Currently Betting: " + betAmount);
+        betted--;
+        $(this).remove();
+        // playerBankRoll -= 1;
+        // betAmount += 1
+        // $("#current-payroll").html("<h3>" + "Your Current Bankroll Is: " + playerBankRoll);
+        // $("#bet-amount").html("<h3>" + "You're Currently Betting: " + betAmount);
+        // betted++;
+      });
+      // $("#one1").click(function() {
+      //   console.log("it works");
+      //   // playerBankRoll -= 1;
+      //   // betAmount += 1
+      //   // $("#current-payroll").html("<h3>" + "Your Current Bankroll Is: " + playerBankRoll);
+      //   // $("#bet-amount").html("<h3>" + "You're Currently Betting: " + betAmount);
+      //   // betted++;
+      // })
+      // one += 1;
+      // betMinus(one);
     }
   });
+
   $("#five").click(function() {
     // console.log("five works");
     if (playerBankRoll > 4 && betAmount < 496) {
@@ -147,6 +179,16 @@ var bet = function(shuffledDeck){
       $("#current-payroll").html("<h3>" + "Your Current Bankroll Is: " + playerBankRoll);
       $("#bet-amount").html("<h3>" + "You're Currently Betting: " + betAmount);
       betted++;
+
+      $("<div>").addClass("chips").attr("id", "five1").appendTo($("#container")).click(function() {
+        console.log("it works");
+        playerBankRoll += 5;
+        betAmount -= 5;
+        $("#current-payroll").html("<h3>" + "Your Current Bankroll Is: " + playerBankRoll);
+        $("#bet-amount").html("<h3>" + "You're Currently Betting: " + betAmount);
+        betted--;
+        $(this).remove();
+      })
     }
   });
   $("#twenty5").click(function() {
@@ -157,6 +199,16 @@ var bet = function(shuffledDeck){
       $("#current-payroll").html("<h3>" + "Your Current Bankroll Is: " + playerBankRoll);
       $("#bet-amount").html("<h3>" + "You're Currently Betting: " + betAmount);
       betted++;
+
+      $("<div>").addClass("chips1").attr("id", "twenty51").appendTo($("#container")).click(function() {
+        console.log("it works");
+        playerBankRoll += 25;
+        betAmount -= 25;
+        $("#current-payroll").html("<h3>" + "Your Current Bankroll Is: " + playerBankRoll);
+        $("#bet-amount").html("<h3>" + "You're Currently Betting: " + betAmount);
+        betted--;
+        $(this).remove();
+      })
     }
   });
   $("#fifty").click(function() {
@@ -167,6 +219,16 @@ var bet = function(shuffledDeck){
       $("#current-payroll").html("<h3>" + "Your Current Bankroll Is: " + playerBankRoll);
       $("#bet-amount").html("<h3>" + "You're Currently Betting: " + betAmount);
       betted++;
+
+      $("<div>").addClass("chips1").attr("id", "fifty1").appendTo($("#container")).click(function() {
+        console.log("it works");
+        playerBankRoll += 50;
+        betAmount -= 50;
+        $("#current-payroll").html("<h3>" + "Your Current Bankroll Is: " + playerBankRoll);
+        $("#bet-amount").html("<h3>" + "You're Currently Betting: " + betAmount);
+        betted--;
+        $(this).remove();
+      })
     }
   });
   $("#one00").click(function() {
@@ -177,6 +239,16 @@ var bet = function(shuffledDeck){
       $("#current-payroll").html("<h3>" + "Your Current Bankroll Is: " + playerBankRoll);
       $("#bet-amount").html("<h3>" + "You're Currently Betting: " + betAmount);
       betted++;
+
+      $("<div>").addClass("chips1").attr("id", "one001").appendTo($("#container")).click(function() {
+        console.log("it works");
+        playerBankRoll += 100;
+        betAmount -= 100;
+        $("#current-payroll").html("<h3>" + "Your Current Bankroll Is: " + playerBankRoll);
+        $("#bet-amount").html("<h3>" + "You're Currently Betting: " + betAmount);
+        betted--;
+        $(this).remove();
+      })
     }
   });
   $("#five00").click(function() {
@@ -187,6 +259,16 @@ var bet = function(shuffledDeck){
       $("#current-payroll").html("<h3>" + "Your Current Bankroll Is: " + playerBankRoll);
       $("#bet-amount").html("<h3>" + "You're Currently Betting: " + betAmount);
       betted++;
+
+      $("<div>").addClass("chips1").attr("id", "five001").appendTo($("#container")).click(function() {
+        console.log("it works");
+        playerBankRoll += 500;
+        betAmount -= 500;
+        $("#current-payroll").html("<h3>" + "Your Current Bankroll Is: " + playerBankRoll);
+        $("#bet-amount").html("<h3>" + "You're Currently Betting: " + betAmount);
+        betted--;
+        $(this).remove();
+      })
     }
   });
 
@@ -195,12 +277,26 @@ var bet = function(shuffledDeck){
       if (betted > 0) {
         dealCards(shuffledDeck);
         $(".done").remove();
+        $(".chips1").remove();
       } else {
         alert("Need to bet");
       }
     });
   };
 
+  // var betMinus = function(betChips) {
+
+  //   if (playerBankRoll > 0 && betAmount < 500) {
+  //     playerBankRoll += 1;
+  //     betAmount -= 1
+  //     $("#current-payroll").html("<h3>" + "Your Current Bankroll Is: " + playerBankRoll);
+  //     $("#bet-amount").html("<h3>" + "You're Currently Betting: " + betAmount);
+  //     betted--;
+  //     betMinus();
+
+  //     $("#one").click(function() {
+  //   }
+  // }
   // } while(playerBankRoll > 0)
   // var betAmount = prompt("How much would you like to bet?"); //needs to take in a number input
   // do{

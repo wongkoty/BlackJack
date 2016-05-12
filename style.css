@@ -24,7 +24,7 @@ h1, h3{
 	visibility: hidden;
 }
 #container{
-	background-color: black;
+	/*background-color: black;*/
 	height: 550px;
 	width: 900px;
 	position: relative;
@@ -40,7 +40,7 @@ h1, h3{
 	background-repeat: no-repeat
 }
 #dealer{
-	background-color: white;
+	/*background-color: white;*/
 	height: 98px;
 	width: 500px;
 	position: absolute;
@@ -48,7 +48,7 @@ h1, h3{
 	left: 22%;
 }
 #player{
-	background-color: white;
+	/*background-color: white;*/
 	height: 98px;
 	width: 500px;
 	position: absolute;
@@ -108,35 +108,71 @@ h1, h3{
 	width: 40px;
 	background-size: contain;
 }
+.chips1{
+	position: absolute;
+	height: 40px;
+	width: 40px;
+	background-size: contain;
+}
 #one{
 	background-image: url("images/chips/1.png");
 	bottom: 29%;
 	left: 20%;
+}
+#one1{
+	background-image: url("images/chips/1.png");
+	bottom: 33%;
+	left: 55%;
 }
 #five{
 	background-image: url("images/chips/5.png");
 	bottom: 25.5%;
 	left: 25%;
 }
+#five1{
+	background-image: url("images/chips/5.png");
+	bottom: 35%;
+	left: 60%;
+}
 #twenty5{
 	background-image: url("images/chips/25.png");
 	bottom: 22.5%;
 	left: 30%;
+}
+#twenty51{
+	background-image: url("images/chips/25.png");
+	bottom: 37%;
+	left: 65%;
 }
 #fifty{
 	background-image: url("images/chips/50.png");
 	bottom: 20.5%;
 	left: 35%;
 }
+#fifty1{
+	background-image: url("images/chips/50.png");
+	bottom: 39%;
+	left: 70%;
+}
 #one00{
 	background-image: url("images/chips/100.png");
 	bottom: 19%;
 	left: 40%;
 }
+#one001{
+	background-image: url("images/chips/100.png");
+	bottom: 41%;
+	left: 75%;
+}
 #five00{
 	background-image: url("images/chips/500.png");
 	bottom: 18.5%;
 	left: 45%;
+}
+#five001{
+	background-image: url("images/chips/500.png");
+	bottom: 40%;
+	left: 70%;
 }
 
 /*club suits*/
