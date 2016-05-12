@@ -16,9 +16,10 @@ button{
 	bottom: 6%;
 	left: 45%;
 }
-h1{
+h1, h3{
 	margin: 15px;
 }
+
 .hidden{
 	visibility: hidden;
 }
@@ -41,23 +42,50 @@ h1{
 #dealer{
 	background-color: white;
 	height: 98px;
-	width: 300px;
+	width: 500px;
 	position: absolute;
 	bottom: 68%;
-	left: 35%;
+	left: 22%;
 }
 #player{
 	background-color: white;
 	height: 98px;
-	width: 300px;
+	width: 500px;
 	position: absolute;
-	bottom: 27%;
-	left: 35%;
+	bottom: 29.5%;
+	left: 22%;
 }
 #start{
 	display: inline-block;
 	position: absolute;
 	left: 46%;
+}
+#current-payroll{
+	position: relative;
+	top: 6%;
+}
+#bet-amount {
+	position: relative;
+	/*top: 8%;*/
+}
+#payout {
+	position: relative;
+	top: -6%;
+}
+#actions{
+	position: relative;
+	top: -12%;
+}
+#done{
+
+}
+.hit {
+	bottom: 7%;
+	left: 38%;
+}
+.stay {
+	bottom: 7%;
+	left: 55%;
 }
 .dealt {
 	background-size: contain;
@@ -65,6 +93,14 @@ h1{
 	width: 72px;
 	/*background-color: blue;*/
 	position: relative;
+}
+#hidden {
+	background-size: contain;
+	height: 100px;
+	width: 72px;
+	/*background-color: blue;*/
+	position: relative;
+	background-image: url("images/rings.png");
 }
 .chips{
 	position: absolute;
