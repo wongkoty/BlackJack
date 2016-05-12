@@ -2,7 +2,7 @@
 
 
 // console.log("What's goodie 2 shoez");
-var playerBankRoll = 10000;
+var playerBankRoll = 1000;
 var betAmount = 0;
 var shuffledDeckUse = []
 var hitIncrement = 4;
@@ -19,7 +19,7 @@ $("#start").click(function(){
 //starts the game
 var start = function(){
   // console.log("start works");
-  $("#start").addClass("hidden");
+  $("#start").remove();
   makeDeck();
 }
 
@@ -41,7 +41,7 @@ var makePlayAgainButton = function() {
 //runs play again
 var playAgain = function() {
   removeCards();
-  $("#play-again").addClass("hidden");
+  $("#play-again").remove();
   hitIncrement = 4;
   dealerCardCount = 2;
   playerCardCount = 2;
@@ -114,16 +114,67 @@ var shuffleDeck = function(newDeck) {
 
 //asks player how much they would like to bet
 var bet = function(shuffledDeck){
+  // do {
+    $("#one").click(function() {
+      console.log("one works");
+      if (playerBankRoll > 0) {
+        playerBankRoll -= 1;
+        betAmount += 1
+        $("#current-payroll").html("<h3>" + "Your Current Bankroll Is: " + playerBankRoll);
+        $("#bet-amount").html("<h3>" + "You're Currently Betting: " + playerBankRoll);
+      }
+    });
+    $("#five").click(function() {
+      console.log("five works");
+      if (playerBankRoll > 4) {
+        playerBankRoll -= 5;
+        betAmount += 5;
+        $("#current-payroll").html("<h3>" + "Your Current Bankroll Is: " + playerBankRoll);
+      }
+    });
+    $("#twenty5").click(function() {
+      console.log("twenty5 works");
+      if (playerBankRoll > 24) {
+        playerBankRoll -= 25;
+        betAmount += 25;
+        $("#current-payroll").html("<h3>" + "Your Current Bankroll Is: " + playerBankRoll);
+      }
+    });
+    $("#fifty").click(function() {
+      console.log("fifty works");
+      if (playerBankRoll > 49) {
+        playerBankRoll -= 50;
+        betAmount += 50;
+        $("#current-payroll").html("<h3>" + "Your Current Bankroll Is: " + playerBankRoll);
+      }
+    });
+    $("#one00").click(function() {
+      console.log("100 works");
+      if (playerBankRoll > 99){
+        playerBankRoll -= 100;
+        betAmount += 100;
+        $("#current-payroll").html("<h3>" + "Your Current Bankroll Is: " + playerBankRoll);
+      }
+    });
+    $("#five00").click(function() {
+      console.log("500 works");
+      if (playerBankRoll > 499){
+        playerBankRoll -= 500;
+        betAmount += 500;
+        $("#current-payroll").html("<h3>" + "Your Current Bankroll Is: " + playerBankRoll);
+      }
+    });
+  // } while(playerBankRoll > 0)
   // var betAmount = prompt("How much would you like to bet?"); //needs to take in a number input
-  do{
-  betAmount = parseInt(window.prompt("Place your bet"));
-  }while(isNaN(betAmount) || playerBankRoll < betAmount || betAmount < 1);
+  // do{
+  // betAmount = parseInt(window.prompt("Place your bet"));
+  // }while(isNaN(betAmount) || playerBankRoll < betAmount || betAmount < 1);
 
   // console.log(betAmount);
   playerBankRoll = playerBankRoll - betAmount;
   // console.log(playerBankRoll);
-  $("#score").html("<h3>" + "Your Current Bankroll Is: " + playerBankRoll);
-  dealCards(betAmount, shuffledDeck);
+  // $("#score").html("<h3>" + "Your Current Bankroll Is: " + playerBankRoll);
+  // dealCards(betAmount, shuffledDeck);
 }
 
 //assigns cards to players
@@ -135,9 +186,9 @@ var dealCards = function(betAmount, shuffledDeck){
   console.log(shuffledDeck);  
   for (i = 0; i < 4; i += 2){
     dealer.push(shuffledDeck[i])
-    $("<div>").addClass(shuffledDeck[i][0] + shuffledDeck[i][1]).addClass("dealt").appendTo($("#dealer"));
+    $("<div>").addClass(shuffledDeck[i][1] + shuffledDeck[i][0]).addClass("dealt").appendTo($("#dealer"));
     player.push(shuffledDeck[i + 1]);
-    $("<div>").addClass(shuffledDeck[i + 1][0] + shuffledDeck[i + 1][1]).addClass("dealt").appendTo($("#player"));
+    $("<div>").addClass(shuffledDeck[i + 1][1] + shuffledDeck[i + 1][0]).addClass("dealt").appendTo($("#player"));
     // $("#player").text("what's up 2");
     // console.log(i);
   }
@@ -156,7 +207,6 @@ var dealCards = function(betAmount, shuffledDeck){
 var convertToNumbers = function(dealerCards, playerCards){
   // console.log("convertToNumbers works");
   console.log(dealerCards);
- 
   // console.log(dealerCards.length);
   for (i = 0; i < dealerCards.length; i++){
     // console.log(dealerCards[i][0]);
@@ -326,9 +376,11 @@ var hitOrStay = function(dealerSum, playerSum) {
 var hit = function(){
   var newCard = shuffledDeckUse[hitIncrement][0];
   console.log(newCard);
+  $("<div>").addClass(shuffledDeckUse[hitIncrement][1] + shuffledDeckUse[hitIncrement][0]).addClass("dealt").appendTo($("#player"));
   hitIncrement++;
   console.log("this is the hit increment " + hitIncrement);
   playerCardCount++;
+
   return convertToNumbers1(newCard);
   // return newCard;
 };
@@ -383,6 +435,7 @@ var dealerTurn = function(dealerSum, playerSum){
     console.log("original dealer sum " + dealerSum);
     console.log("added to sum " + convertToNumbers2(shuffledDeckUse[hitIncrement][0]));
     dealerSum = dealerSum + convertToNumbers2(shuffledDeckUse[hitIncrement][0]);
+    $("<div>").addClass(shuffledDeckUse[hitIncrement][1] + shuffledDeckUse[hitIncrement][0]).addClass("dealt").appendTo($("#dealer"));
     hitIncrement++;
     console.log(hitIncrement);
     console.log("new sum" + dealerSum);
