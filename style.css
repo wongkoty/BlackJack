@@ -79,20 +79,29 @@ h1, h3{
 #start {
 	position: relative;
 	left: 7px;
-	bottom: 5.8%;
+	bottom: 2%;
+}
+#restart{
+	position: absolute;
+	bottom: 90%;
+	left: 93%;
 }
 .done{
 	position: absolute;
 	left: 47%;
-	/*bottom: 26%;*/
+	bottom: 2%;
 }
 .hit {
 	bottom: 7%;
-	left: 38%;
+	left: 35%;
 }
 .stay {
 	bottom: 7%;
-	left: 55%;
+	left: 62%;
+}
+.double-down {
+	bottom: 7%;
+	left: 45%;
 }
 .a1 {
 	bottom: 8%;
@@ -129,6 +138,8 @@ h1, h3{
 	width: 40px;
 	background-size: contain;
 }
+
+/*chips*/
 #one{
 	background-image: url("images/chips/1.png");
 	bottom: 29%;
