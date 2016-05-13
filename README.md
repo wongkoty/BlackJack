@@ -7,6 +7,8 @@ BlackJack First project
 
 First project for GA's WDI course was a choice between the game blackjack or connect 4. This was built with 2 weeks worth of knowledge of HTML, CSS, Javascript, and the library JQuery. The entire project was completed in 3 days. The game is based upon player achieving the closest hand to 21 without going past 21. 
 
+Max bet in this game is 500. 
+
 ### Tech Used / Stack
 
 - HTML 

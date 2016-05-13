@@ -41,7 +41,7 @@ h1, h3{
 }
 #dealer{
 	/*background-color: white;*/
-	height: 98px;
+	height: 103px;
 	width: 500px;
 	position: absolute;
 	bottom: 68%;
@@ -49,7 +49,7 @@ h1, h3{
 }
 #player{
 	/*background-color: white;*/
-	height: 98px;
+	height: 103px;
 	width: 500px;
 	position: absolute;
 	bottom: 29.5%;
@@ -113,15 +113,15 @@ h1, h3{
 }
 .dealt {
 	background-size: contain;
-	height: 102.7px;
-	width: 73.4px;
+	height: 102.6px;
+	width: 73.3px;
 	/*background-color: blue;*/
 	position: relative;
 }
 #hidden {
 	background-size: contain;
-	height: 100px;
-	width: 72px;
+	height: 102.6px;
+	width: 73.3px;
 	/*background-color: blue;*/
 	position: relative;
 	background-image: url("images/rings.png");

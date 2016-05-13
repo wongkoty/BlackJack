@@ -638,7 +638,7 @@ $(document).ready(function() {
         // while (playerAceCounter > 0){
           playerBust -= 10;
           playerAceCounter--;
-          dealerTurn(dealerSum, playerBust);
+          hitOrStay(dealerSum, playerBust);
         // }
       }
     // } else if (playerBust < 21) {
