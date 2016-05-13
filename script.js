@@ -458,7 +458,7 @@ $(document).ready(function() {
       // console.log(hit());
       console.log("This is the sum after hitting " + playerSum);
       checkForPlayerBust(dealerSum, playerSum);
-      checkForBlackJack(0, playerSum);
+      checkForBlackJack(dealerSum, playerSum);
     });
 
     $("<button>").addClass("stay").text("Stay").appendTo($("#container"));
