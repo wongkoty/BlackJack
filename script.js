@@ -638,10 +638,12 @@ $(document).ready(function() {
       makePlayAgainButton();
     } else if (dealer === 21){
       console.log("Dealer has a natural");
+      $("#actions").html("<h3>" + "Dealer Blackjack!");
       $("#payout").html("<h3>" + "Your Payout Is: 0");
       makePlayAgainButton();
     } else if (player === 21){
       console.log("Player has a natural");
+      $("#actions").html("<h3>" + "Player Blackjack!");
       playerBankRoll += betAmount*2.5;
       $("#payout").html("<h3>" + "Your Payout Is: " + betAmount*2.5);
       makePlayAgainButton();
